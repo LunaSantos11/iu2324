@@ -1,4 +1,5 @@
 <script setup>
+
 import { ref, computed } from 'vue'
 import { resolve } from '../model.js'
 
@@ -46,6 +47,19 @@ function sortBy(key) {
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
+
+//ej 3
+function acortar(arr, limit) {
+  if (arr.length > limit) {
+    const acortado = arr.slice(0, limit);
+    const restante = arr.length - limit;
+    return `${acortado.map(v => resolve(v).name).join(', ')}   (+ ${restante})`;
+    } else {
+    return arr.map(v => resolve(v).name).join(', ');
+  }
+} 
+
+
 </script>
 
 <template>
@@ -70,7 +84,8 @@ function capitalize(str) {
             <span class="name">{{entry[key]}}</span>
           </template>
           <template v-else-if="Array.isArray(entry[key])">
-            {{entry[key].map(v => resolve(v).name)}}
+            {{acortar(entry[key], 4)}}
+            <!--{{entry[key].map(v => resolve(v).name).join(' , ')}} EJ 2------------------------------------------------------------------------>
           </template>
           <template v-else>
             {{entry[key]}}

@@ -59,7 +59,7 @@ function list(state) {
       <tr>
         <th>Grupos a los que pertenece</th>
         <td v-if="element.groups.length">
-          {{ element.groups.map(g => resolve(g).name).join(' ') }}
+          {{ element.groups.map(g => resolve(g).name).join(' , ') }}
         </td>
         <td v-else> (ninguno) </td>
       </tr>
@@ -114,7 +114,7 @@ function list(state) {
 
     <h5>Acciones</h5>
     <div class="btn-group">
-      <button @click="$emit('editGroup')" class="btn btn-outline-success">✏️</button>
+      <button title = "EDITGROUP" @click="$emit('editGroup')" class="btn btn-outline-success">✏️</button>
       <button @click="$emit('filterGroup')" class="btn btn-outline-warning">🔬</button>
       <button @click="$emit('rmGroup')" class="btn btn-outline-danger">🗑️</button>
     </div>
