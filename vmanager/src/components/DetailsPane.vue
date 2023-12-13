@@ -1,7 +1,7 @@
 <script setup>
 import { resolve, VmState } from '../model.js'
 
-defineEmits(['editVm', 'filterVm', 'rmVm', 'editGroup', 'filterGroup', 'rmGroup', 'setState'])
+defineEmits(['editVm', 'filterVm', 'rmVm', 'editGroup','confirmDelete', 'filterGroup', 'rmGroup', 'setState'])
 
 const props = defineProps({
   element: Object
@@ -13,16 +13,19 @@ function list(state) {
     .filter(vm=>state ? vm.state == state : true)
     .map(o=>o.name).join(' ');
 }
+
+
+
 </script>
 
 <template>
-  <div v-if="element == null || element.id == -1"  class="responsive-message"> <!--cambio ej5-->
+  <div v-if="element == null || element.id == -1">
     (selecciona una Vm o un grupo para ver sus detalles)
   </div>
-  <div v-else-if="Array.isArray(element.groups)" class = "table-responsive"> <!--cambio ej5-->
+  <div v-else-if="Array.isArray(element.groups)">
     <h4>máquina virtual <span class="name">{{element.name}}</span></h4>
 
-    <table class = "table table-bordered table-hover table-responsive">  <!--cambio ej5-->
+    <table>
       <tr>
         <th>Estado</th>
         <td>{{ element.state }} </td>
@@ -59,27 +62,27 @@ function list(state) {
       <tr>
         <th>Grupos a los que pertenece</th>
         <td v-if="element.groups.length">
-          {{ element.groups.map(g => resolve(g).name).join(' , ') }}
+          {{ element.groups.map(g => resolve(g).name).join(' ') }}
         </td>
         <td v-else> (ninguno) </td>
       </tr>
     </table>
   
-    <h5>Acciones</h5> <!-- CAMBIOS EJERCICIO 4 -->
+    <h5>Acciones</h5>
     <div class="btn-group">
-      <button  title = "EDITAR" @click="$emit('editVm')" class="btn btn-outline-success">✏️</button>
+      <button @click="$emit('editVm')" class="btn btn-outline-success">✏️</button>
 
-      <button title = "FILTRAR" v-if="element.groups.length" class="btn btn-outline-warning"
-       @click="$emit('filterVm')" >🔬</button>
+      <button v-if="element.groups.length" class="btn btn-outline-warning"
+        @click="$emit('filterVm')" >🔬</button>
       
       <button v-if="element.state != VmState.RUNNING" class="btn btn-outline-secondary"
-      title = "CAMBIAR A ENCENDIDA" @click="$emit('setState', VmState.RUNNING)" >▶</button>
+        @click="$emit('setState', VmState.RUNNING)" >▶</button>
       <button v-if="element.state != VmState.SUSPENDED" class="btn btn-outline-secondary"
-      title = "CAMBIAR A SUSPENDIDA" @click="$emit('setState', VmState.SUSPENDED)">💤</button>
+        @click="$emit('setState', VmState.SUSPENDED)">💤</button>
       <button v-if="element.state != VmState.STOPPED" class="btn btn-outline-secondary"
-      title = "CAMBIAR A APAGADA" @click="$emit('setState', VmState.STOPPED)">🛑</button>
+        @click="$emit('setState', VmState.STOPPED)">🛑</button>
       
-      <button  title = "ELIMINAR" @click="$emit('rmVm')" class="btn btn-outline-danger">🗑️</button>
+      <button @click="$emit('rmVm')" class="btn btn-outline-danger">🗑️</button>
     </div>
 
     </div>
@@ -112,12 +115,12 @@ function list(state) {
       </tr>
     </table>
 
-    
     <h5>Acciones</h5>
-    <div class="btn-group"> <!-- CAMBIOS EJERCICIO 4 -->
-      <button title = "EDITAR" @click="$emit('editGroup')" class="btn btn-outline-success">✏️</button>
-      <button title = "FILTRAR" @click="$emit('filterGroup')" class="btn btn-outline-warning">🔬</button>
-      <button title = "ELIMINAR" @click="$emit('rmGroup')" class="btn btn-outline-danger">🗑️</button>
+    <div class="btn-group">
+      <button @click="$emit('editGroup')" class="btn btn-outline-success">✏️</button>
+      <button @click="$emit('filterGroup')" class="btn btn-outline-warning">🔬</button>
+      <button @click="$emit('confirmDelete')" class="btn btn-outline-danger">🗑️</button>
+      <button @click="$emit('changeAllVmState')" class="btn btn-outline-danger">☀️</button>
     </div>
   </div>
 </template>
@@ -136,13 +139,5 @@ function list(state) {
   h5 {
     margin-top: 1em;
   }
-
-  /*cambio ej 5*/
-  @media (max-width: 768px) {
-
-  tr>th {
-    width: auto;
-  }
-}
 
 </style>
