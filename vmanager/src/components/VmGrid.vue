@@ -55,7 +55,7 @@ function acortar(arr, limit) {
     const restante = arr.length - limit;
     return `${acortado.map(v => resolve(v).name).join(', ')}   (+ ${restante})`;
     } else {
-    return arr.map(v => resolve(v).name).join(', ');
+    return arr.map(v => resolve(v).name).join(', '); // 2
   }
 } 
 
@@ -112,7 +112,7 @@ table {
 
 }
 thead>tr {
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid rgb(119, 49, 177);
   color: rgb(104, 103, 103);
 }
 </style>

@@ -138,15 +138,15 @@ const switchGroups = (vmId) => {
 
 <template>
   <!-- Navbar principal -->
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">VManager</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon "></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#div-groups">Grupos</a>
@@ -155,11 +155,11 @@ const switchGroups = (vmId) => {
           <a class="nav-link active" aria-current="page" href="#div-vms">Vms</a>
         </li>
         </ul>        
-          <div class="nav-item ms-auto">
-            <div class="btn-group">
-              <button id="save" class="btn btn-outline-secondary">💾</button>
-              <button id="clean" class="btn btn-outline-secondary">🧽</button>
-              <button id="restore" class="btn btn-outline-secondary">↩️</button>
+          <div class="nav-item ms-auto ">
+            <div class="btn-group"> 
+              <button title = "GUARDAR" id="save" class="btn btn-outline-secondary">💾</button>
+              <!-- <button  title = "LIMPIAR" id="clean" class="btn btn-outline-secondary">🧽</button>----> 
+              <button  title = "DESHACER" id="restore" class="btn btn-outline-secondary">↩️</button>
             </div>
           </div>
       </div>
@@ -172,7 +172,7 @@ const switchGroups = (vmId) => {
   <div class="container-fluid">
     <div class="row">
       <!-- 1a columna: grupos -->
-      <div id="div-groups" class="col-md">
+      <div id="div-groups" class="col-md ">
         <div>
           <h5 class="d-inline">Grupos
             <span v-if="groupFilterVm" class="filter"
@@ -181,7 +181,7 @@ const switchGroups = (vmId) => {
               <span class="name">{{ groupFilterVm.name }}×</span>
             </span>            
           </h5>
-          <a class="d-inline d-sm-none details" href="#div-details">↘️</a>
+          <a class="d-inline d-sm-none details " href="#div-details">↘️</a>
         </div>        
         <span v-if="debug"> {{ searchGroupQuery }}</span>        
         <FilterAddBox 
@@ -196,9 +196,9 @@ const switchGroups = (vmId) => {
         </div>
       </div>
       <!-- 2a columna: vms -->
-      <div id="div-vms" class="col-md">
+      <div id="div-vms" class="col-md ">
         <div>
-          <a class="d-inline d-sm-none escape" href="#">⬆️</a>
+          <a class="d-inline d-sm-none escape " href="#">⬆️</a>
           <h5 class="d-inline">Máquinas Virtuales 
             <span v-if="vmFilterGroup" class="filter"
               @click="switchVms(-1)">
