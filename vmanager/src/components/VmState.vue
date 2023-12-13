@@ -9,7 +9,8 @@
   const vmStateIcons = {
     [VmState.RUNNING]: "▶",
     [VmState.SUSPENDED]: "💤",
-    [VmState.STOPPED]: "🛑"
+    [VmState.STOPPED]: "🛑",
+    [VmState.START]: "☀️"
   };
 
   const vmStateClasses = {
