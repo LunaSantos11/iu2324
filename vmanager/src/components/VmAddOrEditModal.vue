@@ -19,6 +19,13 @@ const props = defineProps({
 
 let modalRef = ref(null);
 
+function cloneVm() {
+  const clonedVm = { ...props.vm }; // Clona el objeto vm
+  clonedVm.id = -1; // Establece un nuevo ID para el clon
+  emit('clone', clonedVm); // Emite un evento para el clon
+  modalRef.value.hide(); // Cierra el modal
+} 
+
 function setVm() {
   const vm = props.vm;
   const form = document.getElementById("editOrAddVm")
@@ -93,6 +100,9 @@ defineExpose({ show });
     <template #footer>
       <button @click.prevent="() => setVm()" class="btn btn-primary">
         {{ isAdd ? 'Añadir esta VM' : `Confirmar cambios a ${vm.name}` }}
+      </button>
+      <button @click.prevent="cloneVm" class="btn btn-success">
+        {{ isAdd ? 'Clonar' : 'Clonar esta VM' }}
       </button>
     </template>
   </VModal>
