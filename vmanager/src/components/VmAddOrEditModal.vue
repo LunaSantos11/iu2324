@@ -101,7 +101,7 @@ defineExpose({ show });
       <button @click.prevent="() => setVm()" class="btn btn-primary">
         {{ isAdd ? 'Añadir esta VM' : `Confirmar cambios a ${vm.name}` }}
       </button>
-      <button @click.prevent="cloneVm" class="btn btn-success">
+      <button  @click.prevent="() => cloneVm()" class="btn btn-success">
         {{ isAdd ? 'Clonar' : 'Clonar esta VM' }}
       </button>
     </template>

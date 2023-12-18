@@ -1,7 +1,7 @@
 <script setup>
 import { resolve, VmState } from '../model.js'
 
-defineEmits(['editVm', 'filterVm', 'rmVm', 'editGroup', 'filterGroup', 'rmGroup', 'setState'])
+defineEmits(['editVm', 'filterVm', 'rmVm', 'editGroup', 'filterGroup', 'rmGroup', 'setState', 'changeAllVmState'])
 
 const props = defineProps({
   element: Object
@@ -120,7 +120,7 @@ function list(state) {
       <button title="Editar" @click="$emit('editGroup')" class="btn btn-outline-success">✏️</button>
       <button title="Filtrar" @click="$emit('filterGroup')" class="btn btn-outline-warning">🔬</button>
       <button title="Eliminar" @click="$emit('rmGroup')" class="btn btn-outline-danger">🗑️</button>
-      <button title="Cambiar estado de todas las mv" @click="$emit('changeAllVmState')" class="btn btn-outline-danger">☀️</button>
+      <button title="Cambiar estado de todas las vm" @click="$emit('changeAllVmState')" class="btn btn-outline-danger">☀️</button>
     </div>
   </div>
 </template>

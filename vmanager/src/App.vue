@@ -36,6 +36,10 @@ function refresh() {
   }
 }
 
+function deshacer() {
+
+}
+
 /////
 // Vms
 /////
@@ -68,6 +72,12 @@ function rmVm(id) {
     }
     refresh();
   }
+}
+
+function changeAllVmState(id, estate){
+
+  M.resolve(id)
+
 }
 
 function setState(id, state) {
@@ -168,7 +178,7 @@ const switchGroups = (vmId) => {
             <div class="btn-group"> 
               <button title = "Guardar" id="save" class="btn btn-outline-secondary">💾</button>
               <!-- <button  title = "LIMPIAR" id="clean" class="btn btn-outline-secondary">🧽</button>----> 
-              <button  title = "Deshacer" id="restore" class="btn btn-outline-secondary">↩️</button>
+              <button  title = "Deshacer" @click.prevent="() => deshacer()" id="restore" class="btn btn-outline-secondary">↩️</button>
             </div>
           </div>
       </div>
@@ -243,6 +253,7 @@ const switchGroups = (vmId) => {
             @rmVm="rmVm(selected.id)"
             @editGroup="edGroup(selected.id)"
             @filterGroup="switchVms(selected.id)"
+            @changeAllVmState="changeAllVmState(selected.id, state)"
             @rmGroup="rmGroup(selected.id)"
             @setState="state=>setState(selected.id, state)"
           ></DetailsPane>

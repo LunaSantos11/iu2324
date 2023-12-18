@@ -30,11 +30,7 @@ function send() {
           @input="{ searchKey = $event.target.value; send()}" 
           type="search" class="form-control" placeholder="Filtrar">
         <span class="input-group-text btn-outline-secondary">🔍</span>
-        <button type="button" 
-          data-bs-toggle="button" 
-          class="input-group-text btn btn-outline-secondary b-avanzada"
-          @click="{ advSearch = !advSearch; send()}" 
-          title="Búsqueda avanzada">⚙️</button>
+       
       </div>
     </div>
     <div class="col-auto">
