@@ -53,7 +53,7 @@ function acortar(arr, limit) {
   if (arr.length > limit) {
     const acortado = arr.slice(0, limit);
     const restante = arr.length - limit;
-    return `${acortado.map(v => resolve(v).name).join(', ')}   (+ ${restante})`;
+    return `${acortado.map(v => resolve(v).name).join(', ')}   (+ ${restante})` ;
     } else {
     return arr.map(v => resolve(v).name).join(', '); // 2
   }
@@ -85,7 +85,6 @@ function acortar(arr, limit) {
           </template>
           <template v-else-if="Array.isArray(entry[key])">
             {{acortar(entry[key], 4)}}
-            <!--{{entry[key].map(v => resolve(v).name).join(' , ')}} EJ 2------------------------------------------------------------------------>
           </template>
           <template v-else>
             {{entry[key]}}

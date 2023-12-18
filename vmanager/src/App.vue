@@ -58,12 +58,16 @@ async function edVm(id) {
   vmModalRef.value.show()
 }
 
+
 function rmVm(id) {
-  M.rmVm(id);
-  if (selected.value.id == id) {
-    selected.value = {id: -1};
+
+  if (window.confirm('¿Estás seguro de que quieres eliminar la vm ' +  M.resolve(id).name + ' ?' )) {  
+      M.rmVm(id);
+    if (selected.value.id == id) {
+      selected.value = {id: -1};
+    }
+    refresh();
   }
-  refresh();
 }
 
 function setState(id, state) {
@@ -93,12 +97,17 @@ async function edGroup(id) {
   groupModalRef.value.show()
 }
 
+
 function rmGroup(id) {
-  M.rmGroup(id);
-  if (selected.value.id == id) {
-    selected.value = {id: -1};
+
+  if (window.confirm('¿Estás seguro de que quieres eliminar el grupo ' +  M.resolve(id).name + ' ?' )) {
+
+    M.rmGroup(id);
+    if (selected.value.id == id) {
+      selected.value = {id: -1};
+    }
+    refresh();
   }
-  refresh();
 }
 
 /////
@@ -157,9 +166,9 @@ const switchGroups = (vmId) => {
         </ul>        
           <div class="nav-item ms-auto ">
             <div class="btn-group"> 
-              <button title = "GUARDAR" id="save" class="btn btn-outline-secondary">💾</button>
+              <button title = "Guardar" id="save" class="btn btn-outline-secondary">💾</button>
               <!-- <button  title = "LIMPIAR" id="clean" class="btn btn-outline-secondary">🧽</button>----> 
-              <button  title = "DESHACER" id="restore" class="btn btn-outline-secondary">↩️</button>
+              <button  title = "Deshacer" id="restore" class="btn btn-outline-secondary">↩️</button>
             </div>
           </div>
       </div>
