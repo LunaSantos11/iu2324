@@ -174,13 +174,6 @@ const switchGroups = (vmId) => {
           <a class="nav-link active" aria-current="page" href="#div-vms">Vms</a>
         </li>
         </ul>        
-          <div class="nav-item ms-auto ">
-            <div class="btn-group"> 
-              <button title = "Guardar" id="save" class="btn btn-outline-secondary">💾</button>
-              <!-- <button  title = "LIMPIAR" id="clean" class="btn btn-outline-secondary">🧽</button>----> 
-              <button  title = "Deshacer" @click.prevent="() => deshacer()" id="restore" class="btn btn-outline-secondary">↩️</button>
-            </div>
-          </div>
       </div>
     </div>
   </nav>
